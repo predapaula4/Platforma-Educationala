@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Online_Platform.Views.TeacherSubject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Online_Platform.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas Background="LightBlue">
+
+        <TextBox Text="{Binding Subject_Name}" Canvas.Left="299" Canvas.Top="35" Width="160" Height="30"></TextBox>
+        <TextBox Text="{Binding Material}"  Width="160" Height="70" Canvas.Left="299" Canvas.Top="122" ></TextBox>
+        <Button Command="{Binding Get_Material}"  Width="100" Height="30" Canvas.Left="509" Canvas.Top="36" Content="Afisare Material" Background="White"></Button>
+        <Button Command="{Binding Modify_Material}"  Width="120" Height="30" Canvas.Left="320" Canvas.Top="237" Content="Modifica materialul"  Background="White"></Button>
+        <Button Command="{Binding Delete_Material}"  Width="120" Height="30" Canvas.Left="320" Canvas.Top="293" Content="Sterge Materialul"  Background="White"></Button>
+        <TextBlock Text="Nume materie" Canvas.Left="336" Canvas.Top="14"></TextBlock>
+        <TextBlock Text="Material" Canvas.Left="354" Canvas.Top="101"></TextBlock>
+    </Canvas>
+</UserControl>

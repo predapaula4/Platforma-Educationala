@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Online_Platform.Views.EditUsers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Online_Platform.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas Background="LightBlue">
+        <Button Content="Elev" Command="{Binding Show_Student}" Canvas.Top="10" Height="26" Width="266" Background="White"/>
+        <Button Content="Profesor" Command="{Binding Show_Teacher}" Canvas.Left="266" Canvas.Top="10" Height="26" Width="271" Background="White"></Button>
+        <Button Content="Materie" Command="{Binding Show_Material}" Canvas.Left="537" Canvas.Top="10" Height="26" Width="263" Background="White"></Button>
+
+        <Canvas Visibility="{Binding ADM_User_Teacher}">
+            <TextBlock Text="Nume" Canvas.Left="200" Canvas.Top="80"></TextBlock>
+            <TextBlock Text="Nume de utilizator" Canvas.Left="200" Canvas.Top="150"></TextBlock>
+            <TextBlock Text="Parola" Canvas.Left="200" Canvas.Top="220"></TextBlock>
+            <TextBox Text="{Binding Teacher_Name}" Canvas.Left="200" Canvas.Top="100" Height="30" Width="100"></TextBox>
+            <TextBox Text="{Binding Teacher_Username}" Height="30" Width="100" Canvas.Left="200" Canvas.Top="170"></TextBox>
+            <TextBox Text="{Binding Teacher_User_Password}" Height="30" Width="100" Canvas.Left="200" Canvas.Top="240"></TextBox>
+
+            <ListBox Name="teacherListBox" ItemsSource="{Binding Teachers_List}" Height="210" Width="150" Canvas.Left="500" Canvas.Top="81">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="Teacher">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="AliceBlue" Height="20" >
+                                <TextBlock Grid.Column="0" Margin ="2" Text="{Binding Name}"   FontSize="12" Foreground="Black"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button  Content="Sterge profesorul" Command="{Binding Delete_Teacher}" CommandParameter="{Binding ElementName = teacherListBox}" Canvas.Left="540" Canvas.Top="300" Height="26" Width="110" Background="White"/>
+            <Button Content="Adauga profesorul" Command="{Binding Add_Teacher}" Canvas.Left="195" Canvas.Top="300" Height="26" Width="110" Background="White"/>
+
+        </Canvas>
+
+        <Canvas Visibility="{Binding ADM_User_Student}">
+            <TextBlock Text="Nume" Canvas.Left="400" Canvas.Top="60"></TextBlock>
+            <TextBlock Text="Nume de utilizator" Canvas.Left="400" Canvas.Top="130"></TextBlock>
+            <TextBlock Text="Parola" Canvas.Left="400" Canvas.Top="200"></TextBlock>
+            <TextBlock Text="Nume Clasa" Canvas.Left="400" Canvas.Top="270"></TextBlock>
+            <TextBlock Text="Numar Clasa" Canvas.Left="550" Canvas.Top="270"></TextBlock>
+            <TextBox Text="{Binding Student_Name}" Canvas.Left="400" Canvas.Top="80" Height="30" Width="100" Padding="5"></TextBox>
+            <TextBox Text="{Binding Student_Username}" Height="30" Width="100" Canvas.Left="400" Canvas.Top="150"  Padding="5"></TextBox>
+            <TextBox Text="{Binding Student_User_Password}" Height="30" Width="100" Canvas.Left="400" Canvas.Top="220"  Padding="5"></TextBox>
+            <TextBox Text="{Binding Student_Class_Name}" Height="30" Width="100" Canvas.Left="400" Canvas.Top="290"  Padding="5"></TextBox>
+            <TextBox Text="{Binding Student_Class_Number}" Height="30" Width="100" Canvas.Left="550" Canvas.Top="290"  Padding="5"></TextBox>
+
+            <TextBlock Text="Id_Clasa" Canvas.Left="35" Canvas.Top="55"></TextBlock>
+            <TextBlock Text="Nume" Canvas.Left="90" Canvas.Top="55"></TextBlock>
+            <ListBox Name="studentListBox" ItemsSource="{Binding Students_List}" Height="280" Width="250" Canvas.Left="30" Canvas.Top="75">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="Student">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="180"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="AliceBlue">
+                                <TextBlock Grid.Column="0" Margin ="2"  Text="{Binding Class_id}" Foreground="Black" FontSize="12"/>
+                            </Border>
+                            <Border Grid.Column="1" Background="AliceBlue">
+                                <TextBlock Grid.Column="1" Margin ="2"  Text="{Binding Name}" Foreground="Black" FontSize="12"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+            <Button Content="Sterge studentul" Command="{Binding Delete_Student}" CommandParameter="{Binding ElementName = studentListBox}" Canvas.Left="670" Canvas.Top="330" Height="26" Width="100" Background="White"/>
+            <Button  Content="Adauga studentul" Command="{Binding Add_Student}" Height="26" Width="100" Canvas.Left="670" Canvas.Top="290" Background="White"/>
+
+        </Canvas>
+
+        <Canvas Visibility="{Binding ADM_Subject}">
+            <TextBlock Text="Nume" Canvas.Left="200" Canvas.Top="81"></TextBlock>
+            <TextBlock Text="Material" Canvas.Left="200" Canvas.Top="154"></TextBlock>
+            <TextBox Text="{Binding Subject_Name}" Canvas.Left="200" Canvas.Top="101" Height="30" Width="100"></TextBox>
+            <TextBox Text="{Binding Subject_Materials}" Height="30" Width="100" Canvas.Left="200" Canvas.Top="175"></TextBox>
+            <ListBox Name="SubjectListBox" ItemsSource="{Binding Subjects_List}" Height="209" Width="220" Canvas.Left="450" Canvas.Top="80">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="Subject">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                                
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="AliceBlue" Height="20" >
+                                <TextBlock Grid.Column="0" Margin ="2" Text="{Binding Name}"   FontSize="12" Foreground="Black"/>
+                            </Border>
+                            <Border Grid.Column="1" Background="AliceBlue">
+                                <TextBlock Grid.Column="1" Margin ="2"  Text="{Binding Materials}" Foreground="Black" FontSize="12"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Sterge materia" Command="{Binding Delete_Subject}" CommandParameter="{Binding ElementName =SubjectListBox}" Canvas.Left="570" Canvas.Top="300" Height="26" Width="100" Background="White"/>
+            <Button Content="Adauga materia" Command="{Binding Add_Material}" Canvas.Left="200" Canvas.Top="250" Height="26" Width="100" Background="White"/>
+        </Canvas>
+
+    </Canvas>
+</UserControl>

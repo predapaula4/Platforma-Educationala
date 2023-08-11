@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Online_Platform.Views.TeacherGrades"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Online_Platform.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas Background="LightBlue">
+        <TextBox Text="{Binding Student_Name}" Height ="30" Width="150" Padding="5" Canvas.Left="260" Canvas.Top="65"/>
+        <TextBox Text="{Binding Subject_Name}" Height="30"  Width="150" Padding="5" Canvas.Left="260" Canvas.Top="137"/>
+        <TextBox Text="{Binding Semester}" Height="30"  Width="150" Padding="5" Canvas.Left="260" Canvas.Top="217"/>
+
+        <TextBlock Height="20" Width="100" Canvas.Left="260" Canvas.Top="40" Text="Nume elev"></TextBlock>
+        <TextBlock Height="20" Width="100" Canvas.Left="260" Canvas.Top="112" Text="Materie"></TextBlock>
+        <TextBlock Height="20" Width="100" Canvas.Left="260" Canvas.Top="192" Text="Semestru"></TextBlock>
+        <Button Content="Afisare" Command="{Binding Button_Clicked}" Canvas.Left="303" Canvas.Top="270" Height="33" Width="107"  Background="White"></Button>
+
+        <ListBox Height="179" Canvas.Left="43" Canvas.Top="68" Width="180" ItemsSource="{Binding Marks_List}" Name ="listbox">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="Absentees">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Background="LightBlue" Height="20" >
+                            <TextBlock Grid.Column="0" Margin ="2" Text="{Binding Grade}"   FontSize="12" Foreground="Black"/>
+                        </Border>
+                        <Border Grid.Column="1" Background="LightBlue" Height="20" >
+                            <TextBlock Grid.Column="1" Margin ="2" Text="{Binding IsThesisMark}"   FontSize="12" Foreground="Black"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Canvas Visibility="{Binding Visibility}">
+            <TextBlock Text="Adauga Nota" Canvas.Left="441" Canvas.Top="22" Height="29" Width="105"/>
+            <TextBlock Text="Nota" Canvas.Left="441" Canvas.Top="38"/>
+            <TextBox Text="{Binding Grade_Value}" Height ="30" Width="150" Padding="5" Canvas.Left="441" Canvas.Top="59"/>
+            <TextBlock Text="Semestrul" Canvas.Left="442" Canvas.Top="116"/>
+            <TextBox Text="{Binding Grade_Semester}" Height="30"  Width="150" Padding="5" Canvas.Left="441" Canvas.Top="137"/>
+            <TextBlock Text="Teza" Canvas.Left="444" Canvas.Top="192"/>
+            <TextBox Text="{Binding IsThesisMark}" Height="30"  Width="150" Padding="5" Canvas.Left="441" Canvas.Top="213"/>
+            <Button Content="Adauga Nota" Command="{Binding Add_Grade}" Canvas.Left="484" Canvas.Top="267" Height="33" Width="107"  Background="White"></Button>
+            <Button Content="Anuleaza Nota" Command="{Binding Delete_Grade}" CommandParameter="{Binding ElementName = listbox}" Canvas.Left="48" Canvas.Top="256" Height="33" Width="107"  Background="White"/>
+            <Button Content="Calculare Medie" Command="{Binding Final_Grade}" Canvas.Left="48" Canvas.Top="297" Height="33" Width="107"  Background="White"/>
+
+        </Canvas>
+    </Canvas>
+</UserControl>
